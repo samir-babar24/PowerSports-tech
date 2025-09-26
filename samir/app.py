@@ -6,9 +6,17 @@ import numpy as np
 import pickle
 
 
-model_path = r"C:\Users\samir\OneDrive\Pictures\mental\project 2\samir_model.pkl"
-with open(model_path, "rb") as f:
-    model = pickle.load(f)
+import joblib
+import os
+
+# Get current directory of app.py
+BASE_DIR = os.path.dirname(__file__)
+
+# Model path (same folder as app.py)
+model_path = os.path.join(BASE_DIR, "samir_model.pkl")
+
+# Load model
+model = joblib.load(model_path)
 
 
 
@@ -89,3 +97,4 @@ if st.button(" Predict Experience Level"):
     mapping = {1: "Beginner", 2: "Intermediate", 3: "Expert"}
     
     st.markdown(f"<h2 style='text-align: center; color:#00FFB0;'>🏆 Predicted Experience Level: {mapping[prediction]}</h2>", unsafe_allow_html=True)
+
